@@ -15,12 +15,32 @@ class _MapPageState extends State<MapPage> {
   GlobalKey mapKey = GlobalKey();
   late YandexMapController controller;
   final List<MapObject> mapObjects = [];
+  final placemarks = [
+    PlacemarkMapObject(
+      icon: PlacemarkIcon.single(PlacemarkIconStyle(
+          image: BitmapDescriptor.fromAssetImage('assets/images/map/place.png'),
+          rotationType: RotationType.rotate)),
+      opacity: 0.7,
+      direction: 90,
+      mapId: const MapObjectId('placemark_3'),
+      point: const Point(
+        latitude: 52.46134318926533,
+        longitude: 56.30839442328624,
+      ),
+    ),
+  ];
 
   Future<bool> get locationPermissionNotGranted async =>
       !(await Permission.location.request().isGranted);
 
   void _showMessage(BuildContext context, Text text) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: text));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    mapObjects.addAll(placemarks);
   }
 
   // ignore: unused_field

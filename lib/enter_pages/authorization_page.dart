@@ -20,9 +20,8 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _emailController =
-      TextEditingController(text: 'gazimoviljasilxamovich@gmail.com');
-  final _passwordController = TextEditingController(text: 'gaz_Ilyas12');
+  final _emailController = TextEditingController(text: 'dvorec@dtdm-oren.ru');
+  final _passwordController = TextEditingController(text: 'Qwerty123');
   final apiProvider = Provider(create: (ref) => SessionManager());
 
   Future<void> login() async {
