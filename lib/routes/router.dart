@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:orenhackcamp/bottom_nav_page.dart';
+import 'package:orenhackcamp/child_pages/kids_info_page.dart';
+import 'package:orenhackcamp/child_pages/kids_page.dart';
 import 'package:orenhackcamp/child_pages/one_camp_page.dart';
 import 'package:orenhackcamp/child_pages/org_chat_page.dart';
 import 'package:orenhackcamp/child_pages/personal_data.dart';
@@ -72,6 +74,22 @@ import '../enter_pages/registration_page.dart';
             name: 'PersonalInfoRouter',
             path: ':personalId',
           ),
+          AutoRoute<void>(
+              page: EmptyRouterPage,
+              name: 'EmptyKidsPageRouter',
+              path: 'emptykidspage',
+              children: [
+                AutoRoute<void>(
+                  page: KidsPage,
+                  name: 'KidsPageRouter',
+                  path: '',
+                ),
+                AutoRoute<void>(
+                  page: KidsInfo,
+                  name: 'KidsInfoRouter',
+                  path: ':kidsinfoId',
+                ),
+              ])
         ]),
   ]),
 ])
