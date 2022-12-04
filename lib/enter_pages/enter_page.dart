@@ -126,6 +126,33 @@ class _ChoosePageState extends State<ChoosePage> {
           indent: 20,
           endIndent: 20,
         ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: TextButton(
+              onPressed: () {},
+              child: Row(
+                children: <Widget>[
+                  const Icon(
+                    Icons.person_outline,
+                    size: 40,
+                    color: Color(0xFF004E8F),
+                  ),
+                  const SizedBox(width: 30),
+                  Text(
+                    'Войти без авторизации',
+                    style: GoogleFonts.montserrat(
+                        textStyle: const TextStyle(
+                            color: Color(0xFF004E8F), fontSize: 20)),
+                  )
+                ],
+              )),
+        ),
+        const Divider(
+          color: Color.fromARGB(255, 132, 131, 129),
+          height: 0,
+          indent: 20,
+          endIndent: 20,
+        ),
       ],
     );
   }

@@ -17,7 +17,7 @@ class _ChatPageState extends State<ChatPage> {
       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
       child: InkWell(
         onTap: () {
-          context.router.navigate(OrgChatRoute());
+          context.router.navigate(const OrgChatRoute());
         },
         child: Container(
           height: 100,

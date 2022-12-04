@@ -207,7 +207,7 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
       child: ElevatedButton(
           style: Elstyle,
           onPressed: () {
-            context.router.navigate(OrgChatRoute());
+            context.router.navigate(const OrgChatRoute());
           },
           child: Text(
             'Связаться',
