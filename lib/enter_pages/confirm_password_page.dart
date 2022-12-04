@@ -1,67 +1,28 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names, empty_catches
 
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:orenhackcamp/child_pages/dialog.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:provider/provider.dart';
 
+import '../child_pages/dialog.dart';
 import '../data/token.dart';
 import '../routes/router.gr.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class ConfirmPassword extends StatefulWidget {
+  const ConfirmPassword({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<ConfirmPassword> createState() => _ConfirmPasswordState();
 }
 
-class _SignInState extends State<SignIn> {
-  final _emailController =
-      TextEditingController(text: 'gazimoviljasilxamovich@gmail.com');
-  final _passwordController = TextEditingController(text: 'gaz_Ilyas12');
+class _ConfirmPasswordState extends State<ConfirmPassword> {
+  final _emailController = TextEditingController();
+  final _confirmController = TextEditingController();
   final apiProvider = Provider(create: (ref) => SessionManager());
-
-  Future<void> login() async {
-    if (_emailController.text.isNotEmpty &&
-        _passwordController.text.isNotEmpty) {
-      SessionManager.api.interceptors.add(PrettyDioLogger(
-          requestHeader: true,
-          requestBody: true,
-          responseBody: true,
-          responseHeader: true,
-          error: true,
-          compact: true,
-          maxWidth: 90));
-      try {
-        apiProvider;
-        var response = await SessionManager.api.post(
-          ("https://gamification.oksei.ru/HealthServer/api/account/sign"),
-          data: {
-            "Email": _emailController.text,
-            "Password": _passwordController.text,
-            HttpHeaders.contentTypeHeader: 'application/json'
-          },
-        );
-        if (response.statusCode == 200) {
-          final token = response.data!['access_token'];
-          final username = response.data!['username'];
-          final role = response.data!['role'];
-          SessionManager().updatetoken(username);
-          SessionManager().updatetoken(role);
-          SessionManager().updatetoken(token);
-          context.router.replaceAll([const NavPageRoute()]);
-        } else {}
-      } catch (e) {
-        showErrorLogIn(context);
-      }
-    } else {
-      showErrorNull(context);
-    }
-  }
 
   Widget buttonAuth() {
     final ButtonStyle Elstyle = ElevatedButton.styleFrom(
@@ -73,7 +34,7 @@ class _SignInState extends State<SignIn> {
     return ElevatedButton(
       style: Elstyle,
       onPressed: () async {
-        login();
+        confirmUp();
       },
       child: Ink(
         width: 200,
@@ -95,12 +56,43 @@ class _SignInState extends State<SignIn> {
           ), // min sizes for Material buttons
           alignment: Alignment.center,
           child: Text(
-            'Войти',
+            'Регистрация',
             style: GoogleFonts.montserrat(fontSize: 18, color: Colors.white),
           ),
         ),
       ),
     );
+  }
+
+  Future<void> confirmUp() async {
+    if (_confirmController.text.isNotEmpty &&
+        _emailController.text.isNotEmpty) {
+      SessionManager.api.interceptors.add(PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: true,
+          error: true,
+          compact: true,
+          maxWidth: 90));
+      try {
+        apiProvider;
+        var response = await SessionManager.api.post(
+          ("https://gamification.oksei.ru/HealthServer/api/account/emailConfirm"),
+          data: {
+            "Email": _emailController.text,
+            "code": _confirmController.text,
+            HttpHeaders.contentTypeHeader: 'application/json'
+          },
+        );
+        if (response.statusCode == 200) {
+          context.router.replaceAll([const NavPageRoute()]);
+          showSuccess(context);
+        } else {}
+      } catch (e) {}
+    } else {
+      showErrorNull(context);
+    }
   }
 
   Widget inputAuth(
@@ -147,20 +139,30 @@ class _SignInState extends State<SignIn> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Авторизация',
+              'Код из почты',
               style: GoogleFonts.montserrat(
                   fontWeight: FontWeight.bold,
                   fontSize: 28,
                   color: Colors.white),
             ),
             const SizedBox(
+              height: 5,
+            ),
+            Text(
+              'На почту указанную в регистрации пришло письмо с подтверждением. Введите эту почту и код из письма.',
+              style: GoogleFonts.lato(fontSize: 18, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
               height: 20,
             ),
-            inputAuth('E-mail', _emailController, false),
-            const SizedBox(height: 10),
-            inputAuth('Пароль', _passwordController, true),
+            inputAuth('Почта', _emailController, false),
             const SizedBox(
-              height: 80,
+              height: 10,
+            ),
+            inputAuth('Код из почты', _confirmController, false),
+            const SizedBox(
+              height: 20,
             ),
             buttonAuth(),
           ],
@@ -177,15 +179,13 @@ class _SignInState extends State<SignIn> {
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/background_auth.png'),
-                fit: BoxFit.cover)),
+                image: AssetImage('assets/images/background_auth.png'))),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 200),
-            child: Container(
-              alignment: Alignment.topCenter,
-              child: formINputs(),
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              formINputs(),
+            ],
           ),
         ),
       ),

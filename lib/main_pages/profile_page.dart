@@ -1,5 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../routes/router.gr.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -9,6 +12,90 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  Widget activity() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+      child: Container(
+        height: 150,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.6),
+              spreadRadius: 0.10,
+              blurRadius: 13.0,
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            SizedBox(
+                height: 50,
+                width: 400,
+                child: TextButton(
+                  onPressed: () {
+                    context.router.navigate(PersonalInfoRouter(personalId: 1));
+                  },
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    margin: const EdgeInsets.only(
+                      left: 20,
+                    ),
+                    child: Text(
+                      'Персональные данные',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: const Color(0xFF004E8F),
+                      ),
+                    ),
+                  ),
+                )),
+            SizedBox(
+                height: 50,
+                width: 400,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    margin: const EdgeInsets.only(
+                      left: 20,
+                    ),
+                    child: Text(
+                      'Забронированные',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: const Color(0xFF004E8F),
+                      ),
+                    ),
+                  ),
+                )),
+            SizedBox(
+                height: 50,
+                width: 400,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    margin: const EdgeInsets.only(
+                      left: 20,
+                    ),
+                    child: Text(
+                      'Мои дети',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: const Color(0xFF004E8F),
+                      ),
+                    ),
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget profileCard() {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
@@ -127,6 +214,7 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Column(
         children: <Widget>[
           profileCard(),
+          activity(),
         ],
       ),
     );
@@ -143,7 +231,12 @@ class _ProfilePageState extends State<ProfilePage> {
             image: AssetImage('assets/images/background_auth.png'),
           ),
         ),
-        child: SafeArea(child: cardWithParams()),
+        child: SafeArea(
+            child: Column(
+          children: [
+            cardWithParams(),
+          ],
+        )),
       ),
     );
   }
