@@ -56,7 +56,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 50,
                 width: 400,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.navigate(BookedPageRouter(bookedId: 1));
+                  },
                   child: Container(
                     alignment: Alignment.centerLeft,
                     margin: const EdgeInsets.only(

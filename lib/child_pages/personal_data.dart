@@ -11,6 +11,40 @@ class PersonalData extends StatefulWidget {
 }
 
 class _PersonalDataState extends State<PersonalData> {
+  Widget buttonChange() {
+    // ignore: non_constant_identifier_names
+    final ButtonStyle Elstyle = ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xFF00A9DF),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+    );
+    return SizedBox(
+      height: 50,
+      width: 300,
+      child: ElevatedButton(
+        style: Elstyle,
+        onPressed: () {},
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const Icon(Icons.create_outlined),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Изменить информацию',
+                style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                  fontSize: 16,
+                )),
+              ),
+            ]),
+      ),
+    );
+  }
+
   Widget buttonShowSnils() {
     // ignore: non_constant_identifier_names
     final ButtonStyle Elstyle = ElevatedButton.styleFrom(
@@ -1205,6 +1239,13 @@ class _PersonalDataState extends State<PersonalData> {
           height: 15,
         ),
         snils(),
+        const SizedBox(
+          height: 15,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: buttonChange(),
+        ),
       ],
     );
   }

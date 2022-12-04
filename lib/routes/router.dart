@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:orenhackcamp/bottom_nav_page.dart';
+import 'package:orenhackcamp/child_pages/booked_page.dart';
 import 'package:orenhackcamp/child_pages/kids_info_page.dart';
 import 'package:orenhackcamp/child_pages/kids_page.dart';
 import 'package:orenhackcamp/child_pages/one_camp_page.dart';
@@ -17,10 +18,11 @@ import '../enter_pages/enter_page.dart';
 import '../enter_pages/registration_page.dart';
 
 @MaterialAutoRouter(routes: [
-  AutoRoute(page: ChoosePage, initial: true),
-  AutoRoute(page: SignIn, path: '/signin'),
-  AutoRoute(page: SignUp, path: '/signup'),
-  AutoRoute(page: ConfirmPassword, path: '/confirmpassword'),
+  AutoRoute<void>(page: ChoosePage, initial: true),
+  AutoRoute<void>(page: SignIn, path: '/signin'),
+  AutoRoute<void>(page: SignUp, path: '/signup'),
+  AutoRoute<void>(page: ConfirmPassword, path: '/confirmpassword'),
+  AutoRoute<void>(path: 'chatId', page: OrgChat),
   AutoRoute<void>(page: NavPage, path: '/bottomnavpage', children: [
     AutoRoute<void>(
         page: EmptyRouterPage,
@@ -48,11 +50,6 @@ import '../enter_pages/registration_page.dart';
             name: 'ChatPagesRouter',
             page: ChatPage,
           ),
-          AutoRoute<void>(
-            path: ':chatId',
-            name: 'OrgChatPageRouter',
-            page: OrgChat,
-          )
         ]),
     AutoRoute<void>(
       page: MapPage,
@@ -89,7 +86,12 @@ import '../enter_pages/registration_page.dart';
                   name: 'KidsInfoRouter',
                   path: ':kidsinfoId',
                 ),
-              ])
+              ]),
+          AutoRoute<void>(
+            page: BookedPage,
+            name: 'BookedPageRouter',
+            path: ':bookedId',
+          ),
         ]),
   ]),
 ])

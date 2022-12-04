@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
+import '../routes/router.gr.dart';
+
 class OneCamp extends StatefulWidget {
   final int campId;
   const OneCamp({super.key, @PathParam() required this.campId});
@@ -205,7 +207,7 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
       child: ElevatedButton(
           style: Elstyle,
           onPressed: () {
-            showCustomDialog(context);
+            context.router.navigate(OrgChatRoute());
           },
           child: Text(
             'Связаться',
