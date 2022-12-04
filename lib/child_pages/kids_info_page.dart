@@ -1015,6 +1015,190 @@ class _KidsInfoState extends State<KidsInfo> {
     );
   }
 
+  Widget birthCertificate() {
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.4),
+            spreadRadius: 0.1,
+            blurRadius: 13.0,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 5),
+                child: Text(
+                  'Гражданство:',
+                  style: GoogleFonts.lato(
+                    color: const Color(0xFF00AADF),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 20,
+                width: 250,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 0.10,
+                      blurRadius: 2.0,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 5),
+                child: Text(
+                  'Серия:',
+                  style: GoogleFonts.lato(
+                    color: const Color(0xFF00AADF),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 20,
+                width: 109,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 0.10,
+                      blurRadius: 2.0,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 5),
+                child: Text(
+                  'Номер:',
+                  style: GoogleFonts.lato(
+                    color: const Color(0xFF00AADF),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 20,
+                width: 109,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 0.10,
+                      blurRadius: 2.0,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 5),
+                child: Text(
+                  'Дата выдачи:',
+                  style: GoogleFonts.lato(
+                    color: const Color(0xFF00AADF),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 20,
+                width: 255,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 0.10,
+                      blurRadius: 2.0,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 5),
+                child: Text(
+                  'Выдан:',
+                  style: GoogleFonts.lato(
+                    color: const Color(0xFF00AADF),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 20,
+                width: 308,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 0.10,
+                      blurRadius: 2.0,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Align(alignment: Alignment.center, child: buttonShowPass()),
+        ]),
+      ),
+    );
+  }
+
   Widget header() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -1099,6 +1283,29 @@ class _KidsInfoState extends State<KidsInfo> {
           height: 20,
         ),
         header(),
+        const SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Свидетельство о рождении',
+              style: GoogleFonts.lato(
+                  color: const Color(0xFF00AADF),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 5, right: 5),
+          child: birthCertificate(),
+        ),
 
         const SizedBox(
           height: 20,
