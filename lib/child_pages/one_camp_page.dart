@@ -17,23 +17,165 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1000));
+        vsync: this, duration: const Duration(milliseconds: 1000));
   }
 
-  Widget buttonBooking() {
+  Widget reviews() {
+    return SizedBox(
+        height: 250,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            const SizedBox(
+              width: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25, bottom: 25),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.4),
+                        blurRadius: 10.0,
+                        spreadRadius: 0.2,
+                      ),
+                    ]),
+                width: 250,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Container(
+                      height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFF00A9DF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.4),
+                              blurRadius: 10.0,
+                              spreadRadius: 0.2,
+                            ),
+                          ]),
+                      child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Тамара Петровна',
+                            style: GoogleFonts.lato(
+                                color: Colors.white, fontSize: 22),
+                          )),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        'Очень здорово! Ребёнку очень понравилось хорошая атмосфера и интерестная программа!!! ',
+                        style: GoogleFonts.lato(
+                            color: const Color(0xFF00A9DF), fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25, bottom: 25),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.4),
+                        blurRadius: 10.0,
+                        spreadRadius: 0.2,
+                      ),
+                    ]),
+                width: 250,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Container(
+                      height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFF00A9DF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.4),
+                              blurRadius: 10.0,
+                              spreadRadius: 0.2,
+                            ),
+                          ]),
+                      child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Елена Иванова',
+                            style: GoogleFonts.lato(
+                                color: Colors.white, fontSize: 22),
+                          )),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        'Супер! ',
+                        style: GoogleFonts.lato(
+                            color: const Color(0xFF00A9DF), fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ));
+  }
+
+  Widget setReview() {
     // ignore: non_constant_identifier_names
     final ButtonStyle Elstyle = ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xFF004E8F),
+      backgroundColor: const Color(0xFF00A9DF),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),
     );
     return SizedBox(
       height: 50,
-      width: 280,
+      child: ElevatedButton(
+          style: Elstyle,
+          onPressed: () {},
+          child: Text(
+            'Оставить отзыв',
+            style: GoogleFonts.lato(
+                textStyle: const TextStyle(
+              fontSize: 16,
+            )),
+          )),
+    );
+  }
+
+  Widget buttonBooking() {
+    // ignore: non_constant_identifier_names
+    final ButtonStyle Elstyle = ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xFF00A9DF),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+    );
+    return SizedBox(
+      height: 50,
+      width: 190,
       child: ElevatedButton(
           style: Elstyle,
           onPressed: () {
@@ -41,6 +183,32 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
           },
           child: Text(
             'Забронировать',
+            style: GoogleFonts.lato(
+                textStyle: const TextStyle(
+              fontSize: 16,
+            )),
+          )),
+    );
+  }
+
+  Widget buttonMessage() {
+    // ignore: non_constant_identifier_names
+    final ButtonStyle Elstyle = ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xFF4BC565),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+    );
+    return SizedBox(
+      height: 50,
+      width: 190,
+      child: ElevatedButton(
+          style: Elstyle,
+          onPressed: () {
+            showCustomDialog(context);
+          },
+          child: Text(
+            'Связаться',
             style: GoogleFonts.lato(
                 textStyle: const TextStyle(
               fontSize: 16,
@@ -83,6 +251,9 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
             )),
           ),
         ),
+        const SizedBox(
+          height: 10,
+        ),
         Container(
           alignment: Alignment.topLeft,
           padding: const EdgeInsets.only(
@@ -111,6 +282,9 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
               color: Color(0xFF004E8F),
             )),
           ),
+        ),
+        const SizedBox(
+          height: 10,
         ),
         Container(
           alignment: Alignment.topLeft,
@@ -141,6 +315,56 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
             )),
           ),
         ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+          alignment: Alignment.topLeft,
+          padding: const EdgeInsets.only(
+            left: 20,
+          ),
+          child: Text(
+            'Цена',
+            style: GoogleFonts.montserrat(
+                textStyle: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF004E8F),
+            )),
+          ),
+        ),
+        Container(
+          alignment: Alignment.topLeft,
+          padding: const EdgeInsets.only(
+            left: 20,
+          ),
+          child: Text(
+            '33500 Рублей',
+            style: GoogleFonts.montserrat(
+                textStyle: const TextStyle(
+              fontSize: 18,
+              color: Color(0xFF004E8F),
+            )),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+          alignment: Alignment.topLeft,
+          padding: const EdgeInsets.only(
+            left: 20,
+          ),
+          child: Text(
+            'Отзывы:',
+            style: GoogleFonts.montserrat(
+                textStyle: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF004E8F),
+            )),
+          ),
+        ),
       ],
     );
   }
@@ -157,7 +381,8 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
             'Солнечная страна',
             style: GoogleFonts.montserrat(
               textStyle: const TextStyle(
-                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                fontSize: 28,
                 color: Color(0xFF004E8F),
               ),
             ),
@@ -358,17 +583,31 @@ class _OneCampState extends State<OneCamp> with TickerProviderStateMixin {
             image: DecorationImage(
           image: AssetImage('assets/images/background_auth.png'),
         )),
-        child: Column(
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
           children: <Widget>[
             addressInfo(),
             const SizedBox(height: 20),
             legalInformation(),
-            SizedBox(
+            reviews(),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: setReview(),
+            ),
+            const SizedBox(
               height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
-              child: buttonBooking(),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  buttonBooking(),
+                  buttonMessage(),
+                ],
+              ),
             ),
           ],
         ),
